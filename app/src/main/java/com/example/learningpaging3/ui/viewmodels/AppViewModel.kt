@@ -1,4 +1,4 @@
-package com.example.learningpaging3.ui
+package com.example.learningpaging3.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,7 +21,11 @@ class AppViewModel @Inject constructor(private val repository: Repository) : Vie
         ).flow.cachedIn(viewModelScope)
     }
 
-    fun insertDummyRecords() {
+    init {
+        insertDummyRecords()
+    }
+
+    private fun insertDummyRecords() {
         (1..500).forEach {
             repository.insertRecords(CharacterData(0, "Dummy Data ==> $it"))
         }
